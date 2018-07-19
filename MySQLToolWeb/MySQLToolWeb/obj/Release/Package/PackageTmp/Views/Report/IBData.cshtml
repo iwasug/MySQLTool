@@ -1,0 +1,77 @@
+﻿<!--
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+-->
+
+@{
+    ViewBag.Title = "IBData";
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/flexigrid")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#flex1").flexigrid
+            (
+                {
+                    url: BaseUrl + "/Report/IBDataList/",
+                    dataType: 'json',
+                    singleSelect: true,
+                    colModel: [
+                    //PLU, MERK, DESKRIPSI, SATUAN, KETERANGAN, UPD
+                    { display: 'TOKO', name: 'TOKO', width: 50, sortable: true, align: 'center' },
+                    { display: 'NAMA', name: 'NAMA', width: 450, sortable: true, align: 'center' },
+                    { display: 'BINLOG', name: 'GB', width: 100, sortable: true, align: 'center' },
+
+                    ],
+                    searchitems: [
+                            { display: 'NAMA', name: 'NAMA' }
+                    ],
+                    onSuccess   : gridFormat,
+                    sortname: "NAMA",
+                    sortorder: "asc",
+                    usepager: true,
+                    title: 'DATA IBDATA TOKO',
+                    useRp: true,
+                    rp: 15,
+                    showTableToggleBtn: true,
+                    width: 200,
+                    height: 400
+                }
+            );
+    });
+    
+    function procMe(celDiv, id) {
+        //$(celDiv).html(id);
+        //alert($('.trSelected td:first-child div').text());
+    };
+    function gridFormat() {
+
+        $('#flex1 tr').each(function () {
+            var cell = $('td[abbr="UPD"] >div', this);
+            cell.text(parseJsonDate(cell.text()));
+        });
+        return true;
+    }
+    function getRow(id) {
+        var td = document.getElementById('flex1').rows[id].cells;
+        return td;
+    }
+    var status = "";
+    function Reload()
+    {
+        $('#fntype').val('');
+        $('#flex1').flexReload();
+    }
+    </script>
+}
+<div>
+    <table id="flex1" style="display:none" width="200"></table>
+</div>
+
+

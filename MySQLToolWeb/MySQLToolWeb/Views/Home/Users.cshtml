@@ -1,0 +1,163 @@
+﻿@model MySQLToolWeb.Models.tb_user
+@{
+    ViewBag.Title = "Users";
+    List<SelectListItem> list = new List<SelectListItem>();
+    list.Add(new SelectListItem { Text = "ADMIN", Value = "ADMIN" });
+    list.Add(new SelectListItem { Text = "USER", Value = "USER" });
+}
+<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                @using (Html.BeginForm("", "", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "frmId" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.USERNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @TYPE = "password" } })
+                                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NAMA, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NAMA, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NAMA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LEVEL, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.LEVEL, list, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LEVEL, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Simpan" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+   </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/flexigrid")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#flex1").flexigrid
+            (
+                {
+                    url: BaseUrl + "/Home/UserList/",
+                    dataType: 'json',
+                    singleSelect: true,
+                    colModel: [
+                    //PLU, MERK, DESKRIPSI, SATUAN, KETERANGAN, UPD
+                    { display: 'USERNAME', name: 'USERNAME', width: 200, sortable: true, align: 'center' },
+                    { display: 'PASSWORD', name: 'PASSWORD', width: 250, sortable: true, align: 'center' },
+                    { display: 'NAMA', name: 'NAMA', width: 250, sortable: true, align: 'center' },
+                    { display: 'LEVEL', name: 'LEVEL', width: 250, sortable: true, align: 'center' },
+
+                    ],
+                    buttons: [
+		            { name: 'Add', bclass: 'Add', onpress: action },
+		            { name: 'Edit', bclass: 'Edit', onpress: action },
+		            { name: 'Delete', bclass: 'Delete', onpress: action },
+		            { separator: true }
+                    ],
+                    sortname: "USERNAME",
+                    sortorder: "asc",
+                    usepager: true,
+                    title: 'DATA USER',
+                    useRp: true,
+                    rp: 15,
+                    showTableToggleBtn: true,
+                    width: 200,
+                    height: 400
+                }
+            );
+    });
+    function action(com, grid) {
+        if (com == 'Delete') {
+            status = "Delete";
+            bootbox.confirm("Apakah Data Mau di hapus?", function (result) {
+                if (result == true) {
+                    $('.trSelected', grid).each(function () {
+                        var id = $(this).attr('id');
+                        id = id.substring(id.lastIndexOf('row') + 3);
+                        var forgeryId = $("#forgeryToken").val();
+                        var data = '{USR: "' + id + '"}';
+                        POSTAjax("Home/UserDEL",data,forgeryId);
+                        Reload();
+                    });
+                }
+            });
+        } else if (com == 'Add') {
+            status = "Add";
+            $('#myModalNorm').modal('show');
+            $('#myModalNorm').find('form')[0].reset();
+        } else if (com == 'Edit') {
+
+            $('.trSelected', grid).each(function () {
+                status = "Edit";
+                $('#USERNAME').val($('.trSelected td:eq(0)').text());
+                $('#PASSWORD').val($('.trSelected td:eq(1)').text());
+                $('#NAMA').val($('.trSelected td:eq(2)').text());
+                $('#LEVEL').val($('.trSelected td:eq(3)').text());
+                $('#myModalNorm').modal('show');
+            });
+        }
+    }
+    function procMe(celDiv, id) {
+        //$(celDiv).html(id);
+        //alert($('.trSelected td:first-child div').text());
+    };
+    function getRow(id) {
+        var td = document.getElementById('flex1').rows[id].cells;
+        return td;
+    }
+    
+    var status = "";
+    function Reload()
+    {
+        $('#fntype').val('');
+        $('#flex1').flexReload();
+    }
+    $('#frmId').submit(function () {
+        if ($('#frmId').valid()) {
+            var obj = $("#frmId").serializeToJSON();
+            var url = "";
+            if (status == "Add") {
+                url = "Home/UserADD";
+            }
+            else if (status == "Edit") {
+                url = "Home/UserEDIT";
+            };
+            var forgeryId = $("#forgeryToken").val();
+            var response = POSTAjax(url, JSON.stringify(obj), forgeryId);
+            if (response == "OK") {
+                Reload();
+                bootbox.alert("OK");
+                $('#myModalNorm').modal('hide');
+            }
+            return false;
+        };
+    });
+    </script>
+}
+<div>
+    <table id="flex1" style="display:none" width="200"></table>
+</div>

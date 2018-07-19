@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "GantiPass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form role="form">
+    <div class="form-group">
+        <label for="pwd">Username :</label>
+        <input type="text" class="form-control" id="User" value="@Session["Nama"]" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password Lama :</label>
+        <input type="password" class="form-control" id="PassLama">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password Baru :</label>
+        <input type="password" class="form-control" id="PassBaru">
+    </div>
+    <!--
+    <button type="button" class="btn btn-default" onclick="TambahData()">Tambah Barang</button>
+        -->
+    <div>
+        <table id="flex1" style="display:none" width="200"></table>
+    </div>
+    <button type="button" class="btn btn-default" onclick="GantiPass()">Ganti Password</button>
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+        function GantiPass() {
+            bootbox.confirm("Apakah Password Mau di simpan ?", function (result) {
+                if (result == true) {
+                    var User = $('#User').val();
+                    var PassLama = $('#PassLama').val();
+                    var PassBaru = $('#PassBaru').val();
+                    var forgeryId = $("#forgeryToken").val();
+                    var data = '{USER: "' + User + '",PASSLAMA: "' + PassLama + '",PASSBARU:"' + PassBaru + '"}';
+                    var url = "Home/SavePASS";
+                    var response = POSTAjax(url, data, forgeryId);
+                    if (response == "OK") {
+                        bootbox.alert("PASSWORD SUKSES DI GANTI");
+                    }
+                    else {
+                        bootbox.alert(response);
+                    };
+                }
+                else {
+                    bootbox.alert("PROSES DIBATALKAN");
+                }
+                
+            });
+        };
+    </script>
+}

@@ -1,0 +1,37 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+extensions: .aspx .ascx
+<%-- 
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+--%>
+extensions: .vb
+'/***********************DO-NOT-REMOVE******************************* 
+
+'Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+'Phone : 082316115700
+
+'***********************DO-NOT-REMOVE*******************************/
+extensions:  .xml .config .xsd .cshtml
+<!--
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+-->

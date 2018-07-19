@@ -1,0 +1,122 @@
+﻿<!--
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+-->
+@if (Session["Username"] == null && ViewBag.Title != "Login")
+{
+    Response.Redirect(Fungsi.BaseUrl + "/Home/Login");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Fungsi.Versi </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/flexigrid/flexigrid.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink(Fungsi.Versi, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-user"></span>@Session["Nama"]<b class="caret"></b><span class="glyphicon glyphicon-none"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                @if (Session["Level"] != null && Session["Level"].ToString().ToUpper() == "ADMIN")
+                                {
+                                    <li><a href="@Fungsi.BaseUrl/Home/Users"><span class="glyphicon glyphicon-user"></span> List User</a></li>
+                                    <li><a href="@Fungsi.BaseUrl/Home/UploadFile"><span class="fa fa-upload"></span> Upload File</a></li>
+                                    <li><a href="@Fungsi.BaseUrl/Home/UploadFileCSV"><span class="fa fa-upload"></span> Upload File Tabel Penting</a></li>
+                                }
+                                <li><a href="@Fungsi.BaseUrl/Home/GantiPass"><span class="glyphicon glyphicon-pencil"></span> Ganti Password</a></li>
+                                <li><a href="@Fungsi.BaseUrl/Home/Logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="@Fungsi.BaseUrl/Home"><i class="glyphicon glyphicon-dashboard"></i> Home</a>
+                    </li>
+                    <li>
+                        @Html.Partial("_Menu")
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    @if (Session["Username"] != null)
+                    {
+                        <div class="col-md-12">
+                            <ol class="breadcrumb">
+                                <li>
+                                    <i class="fa fa-home"></i>  <a href="@Fungsi.BaseUrl/Home">Home</a>
+                                </li>
+                                @{
+                                    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+                                }
+                                <li class="active">
+                                    <i class="fa fa-edit"></i> @controllerName
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-edit"></i> @ViewBag.Title
+                                </li>
+                            </ol>
+                        </div>
+                                    }
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <script>
+            @functions{
+            public string GetAntiForgeryToken()
+            {
+                string cookieToken, formToken;
+                AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                return cookieToken + "," + formToken;
+            }
+            MySQLToolWeb.Models.clsFungsi Fungsi = new MySQLToolWeb.Models.clsFungsi();
+        }
+    </script>
+    <input type="hidden" id="forgeryToken" value="@GetAntiForgeryToken()" />
+    <input type="hidden" id="BaseUrl" value="@Fungsi.BaseUrl" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootbox")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/iwa")
+    @Scripts.Render("~/bundles/serializeToJSON")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

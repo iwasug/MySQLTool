@@ -1,0 +1,53 @@
+﻿<!--
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+-->
+@if (Session["Username"] == null && ViewBag.Title != "Login")
+{
+    Response.Redirect(Fungsi.BaseUrl + "/Home/Login");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Fungsi.Versi </title>
+    @Styles.Render("~/Content/login")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                @RenderBody()
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <script>
+            @functions{
+            public string GetAntiForgeryToken()
+            {
+                string cookieToken, formToken;
+                AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                return cookieToken + "," + formToken;
+            }
+            MySQLToolWeb.Models.clsFungsi Fungsi = new MySQLToolWeb.Models.clsFungsi();
+        }
+    </script>
+    <input type="hidden" id="forgeryToken" value="@GetAntiForgeryToken()" />
+    <input type="hidden" id="BaseUrl" value="@Fungsi.BaseUrl" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootbox")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/iwa")
+    @Scripts.Render("~/bundles/serializeToJSON")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

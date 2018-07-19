@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "LogBackup";
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/flexigrid")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#flex1").flexigrid
+            (
+                {
+                    url: BaseUrl + "/Report/LogBackupList/",
+                    dataType: 'json',
+                    singleSelect: true,
+                    colModel: [
+                    ////TOKO, NAMA, JENIS, IBDATA, BINLOG, TANGGAL, WAKTU, SCHEMA
+                    { display: 'TOKO', name: 'TOKO', width: 50, sortable: true, align: 'center' },
+                    { display: 'NAMA', name: 'NAMA', width: 450, sortable: true, align: 'center' },
+                    { display: 'JENIS', name: 'JENIS', width: 100, sortable: true, align: 'center' },
+                    { display: 'IBDATA', name: 'IBDATA', width: 100, sortable: true, align: 'center' },
+                    { display: 'BINLOG', name: 'BINLOG', width: 100, sortable: true, align: 'center' },
+                    { display: 'TANGGAL', name: 'TANGGAL', width: 100, sortable: true, align: 'center' },
+                    { display: 'WAKTU', name: 'WAKTU', width: 100, sortable: true, align: 'center' },
+                    { display: 'SCHEMA', name: 'SCHEMA', width: 100, sortable: true, align: 'center' },
+
+                    ],
+                    searchitems: [
+                            { display: 'NAMA', name: 'NAMA' },
+                            { display: 'TANGGAL', name: 'TANGGAL' }
+                    ],
+                    onSuccess   : gridFormat,
+                    sortname: "TANGGAL",
+                    sortorder: "DESC",
+                    usepager: true,
+                    title: 'DATA LOG BACKUP / RESTORE',
+                    useRp: true,
+                    rp: 15,
+                    showTableToggleBtn: true,
+                    width: 200,
+                    height: 400
+                }
+            );
+    });
+
+    function procMe(celDiv, id) {
+        //$(celDiv).html(id);
+        //alert($('.trSelected td:first-child div').text());
+    };
+    function gridFormat() {
+
+        $('#flex1 tr').each(function () {
+            var cell = $('td[abbr="TANGGAL"] >div', this);
+            cell.text(parseJsonDate(cell.text()));
+        });
+        return true;
+    }
+    function getRow(id) {
+        var td = document.getElementById('flex1').rows[id].cells;
+        return td;
+    }
+    var status = "";
+    function Reload()
+    {
+        $('#fntype').val('');
+        $('#flex1').flexReload();
+    }
+    </script>
+}
+<div>
+    <table id="flex1" style="display:none" width="200"></table>
+</div>
+
+

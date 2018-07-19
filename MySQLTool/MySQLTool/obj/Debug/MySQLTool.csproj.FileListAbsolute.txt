@@ -1,0 +1,54 @@
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\bin\Debug\MySQLTool.exe
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\bin\Debug\MySQLTool.pdb
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.csprojResolveAssemblyReference.cache
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.Properties.Resources.resources
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.csproj.GenerateResource.Cache
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.exe
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.pdb
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmLogin.resources
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\bin\Debug\Ionic.Zip.dll
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\bin\Debug\MySql.Data.dll
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\bin\Debug\MySqlBackup.dll
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMsgBox.resources
+c:\users\iwa\documents\visual studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMain.resources
+C:\Users\Iwa\Documents\Visual Studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMaintenance.resources
+C:\Users\Iwa\Documents\Visual Studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmRepair.resources
+C:\Users\Iwa\Documents\Visual Studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmCustomBackup.resources
+C:\Users\Iwa\Documents\Visual Studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.Form1.resources
+C:\Users\Iwa\Documents\Visual Studio 2015\Projects\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmListTabel.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.exe
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.pdb
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\bin\Debug\MySQLTool.exe
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\bin\Debug\MySQLTool.pdb
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\bin\Debug\Ionic.Zip.dll
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.csprojResolveAssemblyReference.cache
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.Form1.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmCustomBackup.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmListTabel.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmLogin.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMain.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMaintenance.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMsgBox.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmRepair.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.Properties.Resources.resources
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\obj\Debug\MySQLTool.csproj.GenerateResource.Cache
+E:\PROJECT\@ON PROGRESS\MySQLTool\MySQLTool\bin\Debug\MySql.Data.dll
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.exe
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.pdb
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\bin\Debug\MySQLTool.exe
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\bin\Debug\MySQLTool.pdb
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\bin\Debug\Ionic.Zip.dll
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.csprojResolveAssemblyReference.cache
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmCustomBackup.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmListTabel.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmLogin.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMain.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMaintenance.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmMsgBox.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.frmRepair.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.Properties.Resources.resources
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\obj\Debug\MySQLTool.csproj.GenerateResource.Cache
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\bin\Debug\MySQLTool.exe.config
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\bin\Debug\MySql.Data.dll
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\bin\Debug\Newtonsoft.Json.Net20.dll
+E:\#IWA\MySQLTool\MySQLTool\MySQLTool\bin\Debug\Newtonsoft.Json.Net20.pdb

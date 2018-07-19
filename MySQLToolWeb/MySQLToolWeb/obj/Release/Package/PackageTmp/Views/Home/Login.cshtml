@@ -1,0 +1,76 @@
+﻿<!--
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+-->
+
+@model MySQLToolWeb.Models.tb_user
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><div style="text-align:center;color:#808080">@ViewBag.Versi</div></div>
+    <div class="panel-body">
+        <div class="" style="text-align:center;align-content:center">
+            @using (Html.BeginForm("", "", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "frmId" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal" style="text-align:center;align-content:center">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <img id="profile-img" class="profile-img-card" src="~/Content/howtomysql.png.jpg" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username" } })
+                            @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Password" } })
+                            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Login" class="btn btn-block btn-primary" />
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+    <div class="panel-footer"><div style="text-align:center;"><small>Copyright © 2016 - Iwa Sugriwa</small></div></div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+            $('#frmId').submit(function () {
+                if ($('#frmId').valid()) {
+                    var obj = $("#frmId").serializeToJSON();
+                    var forgeryId = $("#forgeryToken").val();
+                    var response = POSTAjax("Home/Login", JSON.stringify(obj), forgeryId);
+                    if ( response == "OK")
+                    {
+                        window.location = BaseUrl + "/Home";
+                    }
+                    else
+                    {
+                        bootbox.alert("LOGIN GAGAL");
+                    }
+                };
+                return false;
+            });
+    </script>
+}

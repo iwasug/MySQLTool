@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "UploadFile";
+}
+<h2>Upload File</h2>
+<h3 style="color: green">@ViewBag.Message</h3>
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post
+                        , new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary();
+    <input type="file" id="fileToUpload" name="file" />
+    <span class="field-validation-error" id="spanfile"></span>
+    <input type="submit" id="btnSubmit" value="Upload" />
+}
+

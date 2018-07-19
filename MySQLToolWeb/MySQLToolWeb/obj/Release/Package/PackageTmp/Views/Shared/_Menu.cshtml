@@ -1,0 +1,43 @@
+﻿<!--
+/***********************DO-NOT-REMOVE******************************* 
+
+Copyright (c) 2016 Iwa Sugriwa
+Email : iwasugriwa@hotmail.com / netbarrons@gmail.com
+Phone : 082316115700
+
+***********************DO-NOT-REMOVE*******************************/
+-->
+
+@{
+    ViewBag.Title = "_Menu";
+}
+@if (Session["Username"] != null)
+{
+    MySQLToolWeb.Models.clsFungsi Fungsi = new MySQLToolWeb.Models.clsFungsi();
+    MySQLToolWeb.Models.ModelData _DB = new MySQLToolWeb.Models.ModelData();
+    //List<LPP.Models.tb_menu> list = _DB.tb_menu.ToList();
+    string SQL = "";
+    if (Session["Level"].ToString().ToUpper() == "ADMIN")
+    {
+        SQL = "SELECT * FROM TB_MENU WHERE AKTIF !='1';";
+    }
+    else
+    {
+        SQL = "SELECT * FROM TB_MENU WHERE MENU_SUB IN(SELECT MENU_SUB FROM TB_MENU_AKSES WHERE LEVEL='" + Session["Level"] + "') AND AKTIF !='1';";
+    }
+    List<MySQLToolWeb.Models.tb_menu> list = _DB.Database.SqlQuery<MySQLToolWeb.Models.tb_menu>(SQL).ToList();
+    var menu = list.Where(x => x.TIPE == "H").ToList();
+    foreach (var menu_head in menu)
+    {
+        <a href="javascript:;" data-toggle="collapse" data-target="#@menu_head.MENU_ID"><i class="glyphicon @menu_head.ICON"></i> @menu_head.MENU <b class="caret"></b></a>
+        {
+            var xx = list.Where(x => x.TIPE == "S" && x.MENU_ID == menu_head.MENU_ID).ToList();
+            <ul id="@menu_head.MENU_ID" class="collapse">
+                @foreach (var sub in xx)
+                {
+                    <li><a href="@Fungsi.BaseUrl@sub.MENU_LINK"><span class="glyphicon @sub.ICON"></span> @sub.MENU</a></li>
+                }
+            </ul>
+        }
+    }
+}
